@@ -137,6 +137,9 @@ let symptomsArr = [
 export const ContactUs = () => {
   const form = useRef();
   const generateOtp = () => Math.floor(1000 + Math.random() * 9000);
+  // new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+  let date = new Date().toLocaleDateString({ year:"numeric", month:"short", day:"numeric"}).split('/').join('-') 
+  console.log(date )
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -164,6 +167,17 @@ export const ContactUs = () => {
       }
       data.push(obj);
       console.log({ data, obj });
+
+      fetch('https://prediction-system-backend-services.onrender.com/store-data', {
+        method: 'POST',
+        body: JSON.stringify(obj),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function(response) {
+        console.log(response)
+        return response.json();
+      }).then((data)=>console.log(data));
     }
 
     // emailjs.sendForm('service_5ijhdv4', 'template_f5jb4wq', form.current, 'dw0IdgTXXNcUc6QWE')
@@ -184,9 +198,9 @@ export const ContactUs = () => {
         <div>
           <form ref={form} onSubmit={sendEmail}>
             <label>Name</label>
-            <input type="text" name="user_name" required/>
+            <input type="text" name="case_person" required/>
             <label>Email</label>
-            <input type="email" name="user_email" required/>
+            <input type="email" name="case_email" required/>
             <h3>Select Symptoms</h3>
             {symptomsArr.map((el) => {
               return (
@@ -194,14 +208,14 @@ export const ContactUs = () => {
                   <div>
                     <h4>{el.name}</h4>
                     <label>Yes</label>
-                    <input type="radio" value={1} name={el.key} required/>
+                    <input type="radio" value={1} name={el.key} />
                     <label>No</label>
-                    <input type="radio" value={0} name={el.key} defaultChecked/>
+                    <input type="radio" value={0} name={el.key} />
                   </div>
                 </>
               );
             })}
-            <input type="hidden" name="otp" value={generateOtp()} />
+            {/* <input type="hidden" name="otp" value={generateOtp()} /> */}
             <input type="submit" value="Submit" />
           </form>
         </div>
