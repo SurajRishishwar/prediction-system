@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 
 export const ContactUs = () => {
   const form = useRef();
-  const [otp, setotp] = useState("");
+  const [otp, setotp] = useState(0);
 
   const generateOtp = () => {
     setotp(Math.floor(1000 + Math.random() * 9000));
@@ -17,7 +17,7 @@ export const ContactUs = () => {
       if(!res){
         throw new Error(`something went wrong ${res.status}`);
       }
-      let data = res.text;
+      let data = await res.text;
       console.log(data);
 
     }catch(err){
