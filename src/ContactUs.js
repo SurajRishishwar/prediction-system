@@ -9,19 +9,23 @@ export const ContactUs = () => {
     setotp(Math.floor(1000 + Math.random() * 9000));
   };
 
-  const sendEmail = async(e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    try{
-      generateOtp();
-      let res = await emailjs.sendForm('service_5ijhdv4', 'template_f5jb4wq', form.current, 'dw0IdgTXXNcUc6QWE');
-      if(!res){
+    generateOtp();
+    try {
+      let res = await emailjs.sendForm(
+        "service_5ijhdv4",
+        "template_f5jb4wq",
+        form.current,
+        "dw0IdgTXXNcUc6QWE"
+      );
+      if (!res) {
         throw new Error(`something went wrong ${res.status}`);
       }
       let data = await res.text;
       console.log(data);
-
-    }catch(err){
-      console.error(err.message)
+    } catch (err) {
+      console.error(err.message);
     }
 
     // emailjs.sendForm('service_5ijhdv4', 'template_f5jb4wq', form.current, 'dw0IdgTXXNcUc6QWE')
@@ -30,8 +34,6 @@ export const ContactUs = () => {
     //   }, (error) => {
     //       console.log(error.text);
     //   });
-
-
   };
   console.log(otp);
 
