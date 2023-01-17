@@ -5,8 +5,7 @@ import { ContactUs } from "./ContactUs";
 function App() {
   return (
     <div className="App">
-      <h1>Cart</h1>
-    
+      <h1>------------Under Development----------</h1>
       <ContactUs/>
     </div>
   );
