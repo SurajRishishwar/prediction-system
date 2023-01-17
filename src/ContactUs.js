@@ -9,10 +9,10 @@ export const ContactUs = () => {
     setotp(Math.floor(1000 + Math.random() * 9000));
   };
 
+  generateOtp();
   const sendEmail = async(e) => {
     e.preventDefault();
     try{
-      generateOtp();
       let res = await emailjs.sendForm('service_5ijhdv4', 'template_f5jb4wq', form.current, 'dw0IdgTXXNcUc6QWE');
       if(!res){
         throw new Error(`something went wrong ${res.status}`);
