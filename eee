@@ -1,0 +1,55 @@
+// const sendEmail = async (e) => {
+//     e.preventDefault();
+//     try {
+//       let res = await emailjs.sendForm("service_5ijhdv4","template_f5jb4wq",form.current,"dw0IdgTXXNcUc6QWE"
+//       );
+//       if (!res) {
+//         throw new Error(`something went wrong ${res.status}`);
+//       }
+
+//       setShowOtpCard(false);
+//       let data = await res.text;
+//       console.log(data);
+//       setShowOtpCard(true);
+      
+//     } catch (err) {
+//       console.error(err.message);
+//       setShowOtpCard(false);
+//       } 
+      // finally {
+      //   let formData = new FormData(form.current);
+      // // let obj = {};
+      // for (let [key, value] of formData.entries()) {
+      //   obj[key] = value;
+      // }
+      // let formData = new FormData(form.current);
+      // // let obj = {};
+      // for (let [key, value] of formData.entries()) {
+      //   obj[key] = value;
+      // }
+      // console.log(obj);
+
+      // fetch(
+      //   "https://prediction-system-backend-services.onrender.com/store-data",
+      //   {
+      //     method: "POST",
+      //     body: JSON.stringify(obj),
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // )
+      //   .then(function (response) {
+      //     console.log(response);
+      //     return response.json();
+      //   })
+      //   .then((data) => console.log(data));
+    // }
+
+    // emailjs.sendForm('service_5ijhdv4', 'template_f5jb4wq', form.current, 'dw0IdgTXXNcUc6QWE')
+    //   .then((result) => {
+    //       console.log(result.text);
+    //   }, (error) => {
+    //       console.log(error.text);
+    //   });
+//   };
