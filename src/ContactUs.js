@@ -203,7 +203,7 @@ export const ContactUs = () => {
                   <div>
                     <h4>{el.name}</h4>
                     <label>Yes</label>
-                    <input type="radio" value={1} required />
+                    <input type="radio" value={1} name={el.key} required />
                     <label>No</label>
                     <input
                       type="radio"
