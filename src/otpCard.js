@@ -25,6 +25,7 @@ let OtpCard = ({otp,obj}) =>{
         <>
         <div>
             <h1>Varify your otp</h1>
+            <p>OTP sended to <b>{obj.case_email}</b></p>
             <input type="number" onChange={e=>setOtpInput(e.target.value)}/>
             <button onClick={otpVarifyHandler}>Varify</button>
         </div>
