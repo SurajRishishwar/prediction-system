@@ -146,7 +146,6 @@ let symptomsArr = [
 ];
 let obj = {};
 
-
 //this is for collab.
 //this is for collab from paras
 export const ContactUs = () => {
