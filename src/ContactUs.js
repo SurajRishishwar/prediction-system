@@ -186,7 +186,6 @@ export const ContactUs = () => {
       );
   };
 
-  // console.log(otp);
 
   return (
     <>
