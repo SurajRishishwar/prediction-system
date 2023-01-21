@@ -146,7 +146,6 @@ let symptomsArr = [
 ];
 let obj = {};
 
-//this is for collab.
 export const ContactUs = () => {
   let [otp, setOtp] = useState(0);
   let [showOtpCard, setShowOtpCard] = useState(false);
