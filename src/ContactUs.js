@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import OtpCard from "./otpCard";
-
+//hello colab
 let symptomsArr = [
   { key: "itching", name: "Itching" },
   { key: "skin_rash", name: "Skin rash" },
