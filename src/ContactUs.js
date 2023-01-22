@@ -1,6 +1,6 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import toast, { Toaster } from "react-hot-toast";
 import OtpCard from "./otpCard";
 
 let symptomsArr = [
@@ -146,7 +146,6 @@ let symptomsArr = [
 ];
 let obj = {};
 
-//this is for collab.
 export const ContactUs = () => {
   let [otp, setOtp] = useState(0);
   let [showOtpCard, setShowOtpCard] = useState(false);
@@ -159,8 +158,16 @@ export const ContactUs = () => {
     generateOtp();
   }, []);
 
-  let sendEmail = (e) => {
+  let sendEmail = async (e) => {
     e.preventDefault();
+    const notification = toast.loading('Sending OTP for verification', {
+      style: {
+        background: 'white',
+        color: 'black',
+        fontWeight: '17px',
+        padding: '20px',
+      },
+    })
     emailjs
       .sendForm(
         "service_5ijhdv4",
@@ -170,23 +177,45 @@ export const ContactUs = () => {
       )
       .then(
         (result) => {
+          
           setShowOtpCard(true);
           // console.log(result.text);
           let formData = new FormData(form.current);
           for (let [key, value] of formData.entries()) {
             obj[key] = value;
           }
+          toast.success(`OTP sent to ${obj.case_email}`, {
+            duration: 8000,
+            style: {
+              background: 'white',
+              color: 'black',
+              fontWeight: '17px',
+              padding: '20px',
+            },
+          })
         },
         (error) => {
           setShowOtpCard(false);
+          toast.error(`Failed to send OTP`, {
+            duration: 8000,
+            style: {
+              background: 'white',
+              color: 'black',
+              fontWeight: '17px',
+              padding: '20px',
+            },
+          })
           console.log(error.text);
-        }
-      );
+        },
+      ).finally(()=>{
+        toast.dismiss(notification)
+      });
+    
   };
-
 
   return (
     <>
+    <Toaster position="top-center" />
       {showOtpCard ? (
         <OtpCard otp={otp} obj={obj} />
       ) : (
