@@ -160,14 +160,15 @@ export const ContactUs = () => {
 
   let sendEmail = async (e) => {
     e.preventDefault();
-    const notification = toast.loading('Sending OTP for verification', {
+    const notification = toast.loading("Sending OTP for verification", {
       style: {
-        background: 'white',
-        color: 'black',
-        fontWeight: '17px',
-        padding: '20px',
+        background: "rgb(255,255,255,0)",
+        backdropFilter: "blur(15px)",
+        color: "white",
+        fontWeight: "17px",
+        padding: "20px",
       },
-    })
+    });
     emailjs
       .sendForm(
         "service_5ijhdv4",
@@ -177,7 +178,6 @@ export const ContactUs = () => {
       )
       .then(
         (result) => {
-          
           setShowOtpCard(true);
           // console.log(result.text);
           let formData = new FormData(form.current);
@@ -187,35 +187,36 @@ export const ContactUs = () => {
           toast.success(`OTP sent to ${obj.case_email}`, {
             duration: 8000,
             style: {
-              background: 'white',
-              color: 'black',
-              fontWeight: '17px',
-              padding: '20px',
+              background: "white",
+              color: "black",
+              fontWeight: "17px",
+              padding: "20px",
             },
-          })
+          });
         },
         (error) => {
           setShowOtpCard(false);
           toast.error(`Failed to send OTP`, {
             duration: 8000,
             style: {
-              background: 'white',
-              color: 'black',
-              fontWeight: '17px',
-              padding: '20px',
+              background: "rgb(255,255,255,0)",
+              backdropFilter: "blur(15px)",
+              color: "white",
+              fontWeight: "17px",
+              padding: "20px",
             },
-          })
+          });
           console.log(error.text);
-        },
-      ).finally(()=>{
-        toast.dismiss(notification)
+        }
+      )
+      .finally(() => {
+        toast.dismiss(notification);
       });
-    
   };
 
   return (
     <>
-    <Toaster position="top-center" />
+      <Toaster position="top-center" />
       {showOtpCard ? (
         <OtpCard otp={otp} obj={obj} />
       ) : (
