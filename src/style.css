@@ -84,11 +84,9 @@ hr {
   font-size: medium;
   font-weight: 400;
 }
-/* .button_submit:hover {
-  background-color: rgb(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  color:white;
-} */
+.button_submit:disabled {
+  background-color:grey;
+}
 .gap{
     margin: 0rem 1rem;
     padding: 10px;

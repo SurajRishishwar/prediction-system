@@ -149,6 +149,7 @@ let obj = {};
 export const ContactUs = () => {
   let [otp, setOtp] = useState(0);
   let [showOtpCard, setShowOtpCard] = useState(false);
+  let [loading,setLoading] = useState(false);
   const form = useRef();
 
   useEffect(() => {
@@ -160,6 +161,7 @@ export const ContactUs = () => {
 
   let sendEmail = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const notification = toast.loading("Sending OTP for verification", {
       style: {
         background: "rgb(255,255,255,0)",
@@ -192,6 +194,7 @@ export const ContactUs = () => {
     )
       .then(
         (result) => {
+       setLoading(false);
           setShowOtpCard(true);
           // console.log(result.text);
           let formData = new FormData(form.current);
@@ -209,6 +212,7 @@ export const ContactUs = () => {
           });
         },
         (error) => {
+         setLoading(false);
           setShowOtpCard(false);
           toast.error(`Failed to send OTP`, {
             duration: 8000,
@@ -224,6 +228,7 @@ export const ContactUs = () => {
         }
       )
       .finally(() => {
+        setLoading(false);
         toast.dismiss(notification);
       });
   };
@@ -296,11 +301,11 @@ export const ContactUs = () => {
                 );
               })}
             </div>
-            <button className="button_submit" type="submit">
+            <button className="button_submit" type="submit" disabled={loading}>
               Submit
-              <span className="gap">
+              {loading&&<span className="gap">
                 <span className="spinner"></span>
-              </span>
+              </span>}
             </button>
           </form>
         </div>
