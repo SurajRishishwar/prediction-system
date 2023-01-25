@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import OtpCard from "./otpCard";
 
