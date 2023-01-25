@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import OtpCard from "./otpCard";
 
@@ -169,14 +168,27 @@ export const ContactUs = () => {
         padding: "20px",
       },
     });
-    emailjs
-      .sendForm(
-        "service_5ijhdv4",
-        "template_f5jb4wq",
-        form.current,
-        "dw0IdgTXXNcUc6QWE"
-      )
-      .then(
+    // emailjs
+    //   .sendForm(
+    //     "service_5ijhdv4",
+    //     "template_f5jb4wq",
+    //     form.current,
+    //     "dw0IdgTXXNcUc6QWE"
+    //   )
+    fetch(
+      "https://prediction-system-backend-services.onrender.com/sending-email",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          case_email:e.currentTarget.case_email.value,
+          otp:e.currentTarget.otp.value,
+          case_person:e.currentTarget.case_person.value
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then(
         (result) => {
           setShowOtpCard(true);
           // console.log(result.text);
