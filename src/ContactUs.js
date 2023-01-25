@@ -1,6 +1,6 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import toast, { Toaster } from "react-hot-toast";
 import OtpCard from "./otpCard";
 
 let symptomsArr = [
@@ -158,29 +158,25 @@ export const ContactUs = () => {
     generateOtp();
   }, []);
 
-  let sendEmail = (e) => {
+  let sendEmail = async (e) => {
     e.preventDefault();
-
-    // emailjs
-    //   .sendForm(
-    //     "service_5ijhdv4",
-    //     "template_f5jb4wq"
-    //     form.current,
-    //     "dw0IdgTXXNcUc6QWE"
-    //   )
-    fetch('https://prediction-system-backend-services.onrender.com/sending-email', {
-    
-      method: 'POST',
-      body: JSON.stringify({
-        case_email:e.currentTarget.case_email.value,
-        otp:e.currentTarget.otp.value,
-        case_person:e.currentTarget.case_person.value
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-  
-    }).then(
+    const notification = toast.loading("Sending OTP for verification", {
+      style: {
+        background: "rgb(255,255,255,0)",
+        backdropFilter: "blur(15px)",
+        color: "white",
+        fontWeight: "17px",
+        padding: "20px",
+      },
+    });
+    emailjs
+      .sendForm(
+        "service_5ijhdv4",
+        "template_f5jb4wq",
+        form.current,
+        "dw0IdgTXXNcUc6QWE"
+      )
+      .then(
         (result) => {
           setShowOtpCard(true);
           // console.log(result.text);
@@ -188,17 +184,39 @@ export const ContactUs = () => {
           for (let [key, value] of formData.entries()) {
             obj[key] = value;
           }
+          toast.success(`OTP sent to ${obj.case_email}`, {
+            duration: 8000,
+            style: {
+              background: "white",
+              color: "black",
+              fontWeight: "17px",
+              padding: "20px",
+            },
+          });
         },
         (error) => {
           setShowOtpCard(false);
+          toast.error(`Failed to send OTP`, {
+            duration: 8000,
+            style: {
+              background: "rgb(255,255,255,0)",
+              backdropFilter: "blur(15px)",
+              color: "white",
+              fontWeight: "17px",
+              padding: "20px",
+            },
+          });
           console.log(error.text);
         }
-      );
+      )
+      .finally(() => {
+        toast.dismiss(notification);
+      });
   };
-
 
   return (
     <>
+      <Toaster position="top-center" />
       {showOtpCard ? (
         <OtpCard otp={otp} obj={obj} />
       ) : (
