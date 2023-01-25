@@ -24,10 +24,10 @@ let OtpCard = ({otp,obj}) =>{
     return(
         <>
         <div>
-            <h1>Varify your otp</h1>
+            <h1>Verify your otp</h1>
             <p>OTP sended to <b>{obj.case_email}</b></p>
             <input type="number" onChange={e=>setOtpInput(e.target.value)}/>
-            <button onClick={otpVarifyHandler}>Varify</button>
+            <button onClick={otpVarifyHandler}>Verify</button>
         </div>
         </>
     )
