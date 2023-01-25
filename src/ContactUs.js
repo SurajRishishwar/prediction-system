@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import OtpCard from "./otpCard";
+import "./style.css";
 
 let symptomsArr = [
   { key: "itching", name: "Itching" },
@@ -180,15 +181,16 @@ export const ContactUs = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          case_email:e.currentTarget.case_email.value,
-          otp:e.currentTarget.otp.value,
-          case_person:e.currentTarget.case_person.value
+          case_email: e.currentTarget.case_email.value,
+          otp: e.currentTarget.otp.value,
+          case_person: e.currentTarget.case_person.value,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       }
-    ).then(
+    )
+      .then(
         (result) => {
           setShowOtpCard(true);
           // console.log(result.text);
@@ -226,40 +228,80 @@ export const ContactUs = () => {
       });
   };
 
-
   return (
     <>
       <Toaster position="top-center" />
       {showOtpCard ? (
         <OtpCard otp={otp} obj={obj} />
       ) : (
-        <div>
-          <form ref={form} onSubmit={sendEmail}>
-            <label>Name</label>
+        <div className="container-form">
+          <form ref={form} onSubmit={sendEmail} className="form">
+            <div className="input_container">
+              <div className="wrap">
+                <label for="case_person" className="label_top">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  className="input_text"
+                  name="case_person"
+                  placeholder="Enter Name"
+                  required
+                />
+              </div>
+              <div className="wrap">
+                <label for="case_email" className="label_top">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  className="input_text"
+                  name="case_email"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+            </div>
             <input type="hidden" name="otp" value={otp} />
-            <input type="text" name="case_person" required />
-            <label>Email</label>
-            <input type="email" name="case_email" required />
-            <h3>Select Symptoms</h3>
-            {symptomsArr.map((el) => {
-              return (
-                <>
-                  <div>
-                    <h4>{el.name}</h4>
-                    <label>Yes</label>
-                    <input type="radio" value={1} name={el.key} required />
-                    <label>No</label>
-                    <input
-                      type="radio"
-                      value={0}
-                      name={el.key}
-                      defaultChecked
-                    />
-                  </div>
-                </>
-              );
-            })}
-            <input type="submit" value="Submit" />
+            <h3 className="heading-symptoms">Select Symptoms</h3>
+            <div className="container_overflow">
+              {symptomsArr.map((el) => {
+                return (
+                  <>
+                    <div className="conainter_symptoms">
+                      <h4 className="symptom">{el.name}</h4>
+                      <label name={el.name} className="radio_label">
+                        Yes
+                      </label>
+                      <input
+                        className="symptoms_radio"
+                        type="radio"
+                        value={1}
+                        name={el.key}
+                        required
+                      />
+                      <label name={el.name} className="radio_label">
+                        No
+                      </label>
+                      <input
+                        className="symptoms_radio"
+                        type="radio"
+                        value={0}
+                        name={el.key}
+                        defaultChecked
+                      />
+                      <hr />
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+            <button className="button_submit" type="submit">
+              Submit
+              <span className="gap">
+                <span className="spinner"></span>
+              </span>
+            </button>
           </form>
         </div>
       )}

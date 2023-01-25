@@ -1,3 +1,120 @@
 /* body{
     background-image: url("https://images.pexels.com/photos/2471234/pexels-photo-2471234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
 } */
+.container-form {
+  max-width: 60%;
+  margin: 2vh auto;
+  color: white;
+}
+.form {
+  max-width: 90%;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.298);
+  border-radius: 1rem;
+  padding: 3rem 4rem;
+}
+.container_overflow {
+  max-height: 25rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: rgb(255, 255, 255, 0.01);
+  backdrop-filter: blur(15px);
+  border-radius: 1rem;
+  padding: 0rem 2rem;
+  margin: 2rem auto;
+}
+hr {
+  border: 0.5px solid rgba(255, 255, 255, 0.298);
+}
+
+.symptom {
+  font-weight: 400;
+}
+.radio_label {
+  font-weight: 300;
+}
+.symptoms_radio {
+  accent-color: rgb(46, 40, 40);
+}
+
+.input_container {
+  /* background-color: aquamarine; */
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+}
+::placeholder {
+  color: rgb(42, 42, 42);
+  opacity: 1;
+}
+
+.label_top {
+  font-size: larger;
+  padding-right: 1rem;
+  font-weight: 800;
+}
+.wrap {
+  margin: 1rem;
+}
+
+.input_text {
+  padding: 0.5rem 2rem;
+  background-color: rgb(255, 255, 255, 0.03);
+  outline-width: 0;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(15px);
+  caret-color: rgba(255, 255, 255, 0.298);
+  color: white;
+}
+.input_text:focus {
+  border: 1px solid rgba(255, 255, 255, 0.298);
+}
+
+.button_submit {
+  width: 10rem;
+  border-radius: 0.5rem;
+  border: 1px solid white;
+  /* background-color: transparent; */
+  /* background-color: rgb(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px); */
+  padding: 0.6rem;
+  font-size: medium;
+  font-weight: 400;
+}
+/* .button_submit:hover {
+  background-color: rgb(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  color:white;
+} */
+.gap{
+    margin: 0rem 1rem;
+    padding: 10px;
+}
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #000;
+    animation: spinner .6s linear infinite;
+  }
+
+@media screen and (max-width: 800px) {
+  .container-form {
+    max-width: 90%;
+  }
+  .button_submit{
+    width: 100%;
+  }
+}
