@@ -177,12 +177,12 @@ export const ContactUs = () => {
     //     "dw0IdgTXXNcUc6QWE"
     //   )
     fetch(
-      "https://prediction-system-backend-services.onrender.com/send",
+      "https://prediction-system-backend-services.onrender.com/sending-email",
       {
         method: "POST",
         body: JSON.stringify({
           case_email:e.currentTarget.case_email.value,
-          otp:e.currentTarget.case_email.value,
+          otp:e.currentTarget.otp.value,
           case_person:e.currentTarget.case_person.value
         }),
         headers: {
