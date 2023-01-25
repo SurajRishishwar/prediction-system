@@ -169,14 +169,27 @@ export const ContactUs = () => {
         padding: "20px",
       },
     });
-    emailjs
-      .sendForm(
-        "service_5ijhdv4",
-        "template_f5jb4wq",
-        form.current,
-        "dw0IdgTXXNcUc6QWE"
-      )
-      .then(
+    // emailjs
+    //   .sendForm(
+    //     "service_5ijhdv4",
+    //     "template_f5jb4wq",
+    //     form.current,
+    //     "dw0IdgTXXNcUc6QWE"
+    //   )
+    fetch(
+      "https://prediction-system-backend-services.onrender.com/send",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          case_email:e.currentTarget.case_email.value,
+          otp:e.currentTarget.case_email.value,
+          case_person:e.currentTarget.case_person.value
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then(
         (result) => {
           setShowOtpCard(true);
           // console.log(result.text);
