@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast,{Toaster} from 'react-hot-toast';
+import './otpCard.css';
 let OtpCard = ({ otp, obj }) => {
   let [otpInput, setOtpInput] = useState("");
   let otpVarifyHandler = () => {
@@ -64,14 +65,17 @@ let OtpCard = ({ otp, obj }) => {
   return (
     <>
     <Toaster position="top-center" />
-      <div>
-        <h1>Verify your otp</h1>
-        <p>
-          OTP sended to <b>{obj.case_email}</b>
+    <div className="screen">
+        <div className="container-card">
+        <h1 className="heading-card">Verify your OTP</h1>
+        <p className="p-card">
+          OTP sent to <b>{obj.case_email}</b>
         </p>
-        <input type="number" onChange={(e) => setOtpInput(e.target.value)} />
-        <button onClick={otpVarifyHandler}>Verify</button>
+        <input className="input-card" type="number" onChange={(e) => setOtpInput(e.target.value)} placeholder="Enter OTP"/>
+        <button className="button-otp" onClick={otpVarifyHandler}>Verify <span className="gap"><span className="spinner"></span></span></button>
       </div>
+    </div>
+      
     </>
   );
 };
