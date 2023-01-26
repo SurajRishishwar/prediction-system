@@ -1,9 +1,9 @@
-/* body{
-    background-image: url("https://images.pexels.com/photos/2471234/pexels-photo-2471234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-} */
+body{
+    height: 98vh;
+}
 .container-form {
   max-width: 60%;
-  margin: 2vh auto;
+  margin:2vh auto;
   color: white;
 }
 .form {
@@ -16,7 +16,7 @@
   padding: 3rem 4rem;
 }
 .container_overflow {
-  max-height: 25rem;
+  height: 25rem;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: rgb(255, 255, 255, 0.01);
@@ -110,11 +110,16 @@ hr {
     animation: spinner .6s linear infinite;
   }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1300px) {
   .container-form {
     max-width: 90%;
   }
-  .button_submit{
-    width: 100%;
-  }
 }
+@media screen and (max-width: 900px) {
+    .button_submit{
+      width: 100%;
+    }
+    .container_overflow{
+        height: 20rem;
+    }
+  }
