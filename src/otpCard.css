@@ -1,0 +1,63 @@
+body {
+  background-size: cover;
+  height: 60vh;
+}
+.screen {
+  max-width: 50%;
+  margin: 40vh auto;
+}
+.container-card {
+  max-width: 90%;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.298);
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.heading-card {
+  margin: 0;
+  padding-bottom: 2rem;
+}
+.p-card {
+  font-style: italic;
+  font-weight: 200;
+}
+b {
+  font-weight: 400;
+}
+.input-card {
+  width: 50%;
+  height: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: rgb(255, 255, 255, 0.03);
+  outline-width: 0;
+  border: 1px solid transparent;
+  border-radius:6px 0px 0px 6px;
+  backdrop-filter: blur(15px);
+  caret-color: rgba(255, 255, 255, 0.298);
+  color: white;
+}
+.input-card:focus {
+  border: 1px solid rgba(255, 255, 255, 0.298);
+}
+::placeholder {
+  color: rgb(42, 42, 42);
+  opacity: 1;
+}
+
+.button-otp {
+  width: 8rem;
+  border-radius:0px 6px 6px 0px;
+  border: none;
+  padding: 1.07rem 1rem;
+  /* font-size: small; */
+  font-weight: 600;
+}
+
+@media screen and (max-width: 800px) {
+    .screen{
+        max-width: 90%;
+    }
+  }
