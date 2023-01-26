@@ -115,7 +115,7 @@ hr {
     max-width: 90%;
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 840px) {
     .button_submit{
       width: 100%;
     }
