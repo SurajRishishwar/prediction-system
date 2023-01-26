@@ -76,20 +76,22 @@ hr {
 .button_submit {
   width: 10rem;
   border-radius: 0.5rem;
-  border: 1px solid white;
+  border: none;
   /* background-color: transparent; */
   /* background-color: rgb(255, 255, 255, 0.1);
   backdrop-filter: blur(20px); */
+  background-color: white;
+  color:black;
   padding: 0.6rem;
   font-size: medium;
   font-weight: 400;
 }
 .button_submit:disabled {
-  background-color:grey;
+  background-color:rgb(220, 220, 220);
 }
 .gap{
     margin: 0rem 1rem;
-    padding: 10px;
+    /* padding: 2px; */
 }
 
 @keyframes spinner {

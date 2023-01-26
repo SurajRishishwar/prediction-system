@@ -3,9 +3,11 @@ import toast,{Toaster} from 'react-hot-toast';
 import './otpCard.css';
 let OtpCard = ({ otp, obj }) => {
   let [otpInput, setOtpInput] = useState("");
+  let [loading,setLoading] = useState(false);
   let otpVarifyHandler = () => {
     
     if (otp === +otpInput) {
+        setLoading(true);
         const notification = toast.loading("Verifying OTP", {
             style: {
               background: "white",
@@ -48,6 +50,7 @@ let OtpCard = ({ otp, obj }) => {
           });
         })
         .finally(() => {
+            setLoading(false);
           toast.dismiss(notification);
         });
     } else {
@@ -72,7 +75,7 @@ let OtpCard = ({ otp, obj }) => {
           OTP sent to <b>{obj.case_email}</b>
         </p>
         <input className="input-card" type="number" onChange={(e) => setOtpInput(e.target.value)} placeholder="Enter OTP"/>
-        <button className="button-otp" onClick={otpVarifyHandler}>Verify <span className="gap"><span className="spinner"></span></span></button>
+        <button className="button-otp" onClick={otpVarifyHandler} disabled={loading}><span className="btn-text">→</span>{loading&&<span className="gap"><span className="spinner"></span></span>}</button>
       </div>
     </div>
       

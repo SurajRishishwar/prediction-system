@@ -1,10 +1,10 @@
 body {
   background-size: cover;
-  height: 60vh;
+  height: 70vh;
 }
 .screen {
   max-width: 50%;
-  margin: 40vh auto;
+  margin: 30vh auto;
 }
 .container-card {
   max-width: 90%;
@@ -39,9 +39,9 @@ b {
   caret-color: rgba(255, 255, 255, 0.298);
   color: white;
 }
-.input-card:focus {
+/* .input-card:focus {
   border: 1px solid rgba(255, 255, 255, 0.298);
-}
+} */
 ::placeholder {
   color: rgb(42, 42, 42);
   opacity: 1;
@@ -51,13 +51,19 @@ b {
   width: 8rem;
   border-radius:0px 6px 6px 0px;
   border: none;
-  padding: 1.07rem 1rem;
+  padding: 1.09rem 1rem;
   /* font-size: small; */
   font-weight: 600;
 }
+.button-otp:disabled {
+    background-color:rgb(220, 220, 220);
+  }
 
 @media screen and (max-width: 800px) {
     .screen{
         max-width: 90%;
+    }
+    .button-otp{
+        width: 5rem;
     }
   }
