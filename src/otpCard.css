@@ -1,13 +1,16 @@
-body {
+/* body {
   background-size: cover;
   max-height:70vh;
-}
+} */
 .screen {
-  width: 50%;
-  margin:30vh auto;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container-card {
-  max-width: 90%;
+  width: 40%;
   color: white;
   background-color: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(15px);
@@ -48,7 +51,7 @@ b {
 }
 
 .button-otp {
-  width: 8rem;
+  width: 7rem;
   border-radius:0px 6px 6px 0px;
   border: none;
   padding: 1.09rem 1rem;
@@ -60,8 +63,8 @@ b {
   }
 
 @media screen and (max-width: 800px) {
-    .screen{
-        width: 90%;
+    .container-card{
+        width: 70%;
     }
     .button-otp{
         width: 5rem;
