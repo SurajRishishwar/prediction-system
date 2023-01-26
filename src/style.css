@@ -1,14 +1,18 @@
-body{
-    height: 98vh;
-}
+/* body{
+
+} */
 .container-form {
-  max-width: 60%;
-  margin:2vh auto;
+  max-width: 60vw;
+  height: 100vh;
+  margin:auto;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .form {
   max-width: 90%;
-  margin: auto;
+  /* margin:auto; */
   background-color: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(15px);
   border: 2px solid rgba(255, 255, 255, 0.298);
@@ -112,7 +116,7 @@ hr {
 
 @media screen and (max-width: 1300px) {
   .container-form {
-    max-width: 90%;
+    max-width: 90vw;
   }
 }
 @media screen and (max-width: 840px) {
@@ -123,3 +127,4 @@ hr {
         height: 20rem;
     }
   }
+
