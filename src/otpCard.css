@@ -14,6 +14,7 @@
   color: white;
   background-color: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border: 2px solid rgba(255, 255, 255, 0.298);
   margin: auto;
   padding: 2rem;
@@ -39,6 +40,7 @@ b {
   border: 1px solid transparent;
   border-radius:6px 0px 0px 6px;
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   caret-color: rgba(255, 255, 255, 0.298);
   color: white;
 }
