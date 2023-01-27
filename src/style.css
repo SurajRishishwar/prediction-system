@@ -2,7 +2,7 @@
 
 } */
 .container-form {
-  max-width: 60vw;
+  width: 60vw;
   height: 100vh;
   margin:auto;
   color: white;
@@ -11,7 +11,7 @@
   align-items: center;
 }
 .form {
-  max-width: 90%;
+  width: 90%;
   /* margin:auto; */
   background-color: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(15px);
@@ -20,7 +20,7 @@
   padding: 3rem 4rem;
 }
 .container_overflow {
-  height: 25rem;
+  height: 15rem;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: rgb(255, 255, 255, 0.01);
@@ -116,15 +116,34 @@ hr {
 
 @media screen and (max-width: 1300px) {
   .container-form {
-    max-width: 90vw;
+    width: 80vw;
   }
 }
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 1000px) {
+    /* .container_overflow{
+        height: 15rem;
+    } */
+    .container-form {
+      width: 90vw;
+    }
+    
+  }
+  @media screen and (max-width: 600px) {
+    .button_submit {
+      width: 100%;
+    }
+    
+  }
+  @media screen and (max-width: 414px) {
     .button_submit{
       width: 100%;
     }
-    .container_overflow{
-        height: 20rem;
+    .form{
+      width: 100%;
+      padding: 1rem 1rem;
+    }
+    .container-form{
+      width: 98vw;
+      height: 80vh;
     }
   }
-
