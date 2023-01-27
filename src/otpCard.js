@@ -1,21 +1,14 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "./otpCard.css";
-let OtpCard = ({ otp, obj }) => {
+let OtpCard = ({ otp, obj, style }) => {
   let [otpInput, setOtpInput] = useState("");
   let [loading, setLoading] = useState(false);
   let [hideOtp, setHideOtp] = useState(false);
   let otpVarifyHandler = () => {
     if (otp === +otpInput) {
       setLoading(true);
-      const notification = toast.loading("Verifying OTP", {
-        style: {
-          background: "white",
-          color: "black",
-          fontWeight: "17px",
-          padding: "20px",
-        },
-      });
+      const notification = toast.loading("Verifying OTP", style);
       fetch(
         "https://prediction-system-backend-services.onrender.com/store-data",
         {
@@ -27,13 +20,8 @@ let OtpCard = ({ otp, obj }) => {
         }
       )
         .then(function (response) {
-          toast.success("OTP verified!, Your form has been submitted", {
-            style: {
-              background: "white",
-              color: "black",
-              fontWeight: "17px",
-              padding: "20px",
-            },
+          toast.success("OTP verified!, Your form has been submitted", style, {
+            duration: 1000,
           });
           console.log(response);
           setHideOtp(true);
@@ -41,13 +29,8 @@ let OtpCard = ({ otp, obj }) => {
         })
         .then((data) => console.log(data))
         .catch((err) => {
-          toast.error("Something went wrong!", {
-            style: {
-              background: "white",
-              color: "black",
-              fontWeight: "17px",
-              padding: "20px",
-            },
+          toast.error("Something went wrong!", style, {
+            duration: 8000,
           });
         })
         .finally(() => {
@@ -55,31 +38,33 @@ let OtpCard = ({ otp, obj }) => {
           toast.dismiss(notification);
         });
     } else {
-      toast.error("OTP does not match", {
-        style: {
-          background: "white",
-          color: "black",
-          fontWeight: "17px",
-          padding: "20px",
-        },
+      toast.error("OTP does not match", style, {
+        duration: 8000,
       });
     }
   };
 
   return (
     <>
-      <Toaster position="top-center" />
+      {/* <Toaster position="top-right"/> */}
       {hideOtp ? (
         <>
           <div className="screen">
             <div className="container-card">
               <h1 className="heading-card">Thank You!</h1>
               <p className="thankyou-card">
-                <b style={{fontWeight:'600'}}>Hey {obj.case_person.split(' ').slice(0,1)}, We have received your request,</b><br/><hr/>
-                <b>we will reach you by email when your request will be fulfiled.</b>
-                <br/>
+                <b style={{ fontWeight: "600" }}>
+                  Hey {obj.case_person.split(" ").slice(0, 1)}, We have received
+                  your request,
+                </b>
+                <br />
+                <hr />
+                <b>
+                  we will reach you by email when your request will be fulfiled.
+                </b>
+                <br />
               </p>
-                <h4>Team Prediction</h4>
+              <h4>Team Prediction</h4>
             </div>
           </div>
         </>
