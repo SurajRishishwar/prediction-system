@@ -145,6 +145,16 @@ let symptomsArr = [
   { key: "yellow_crust_ooze", name: "yellow crust ooze" },
 ];
 let obj = {};
+let style = {
+  duration: 8000,
+  style: {
+    background: "rgb(255,255,255,0.05)",
+    backdropFilter: "blur(15px)",
+    color: "white",
+    fontWeight: "17px",
+    padding: "20px",
+  },
+}
 
 export const ContactUs = () => {
   let [otp, setOtp] = useState(0);
@@ -162,15 +172,7 @@ export const ContactUs = () => {
   let sendEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const notification = toast.loading("Sending OTP for verification", {
-      style: {
-        background: "rgb(255,255,255,0)",
-        backdropFilter: "blur(15px)",
-        color: "white",
-        fontWeight: "17px",
-        padding: "20px",
-      },
-    });
+    const notification = toast.loading("Sending OTP for verification", style);
     // emailjs
     //   .sendForm(
     //     "service_5ijhdv4",
@@ -201,28 +203,15 @@ export const ContactUs = () => {
           for (let [key, value] of formData.entries()) {
             obj[key] = value;
           }
-          toast.success(`OTP sent to ${obj.case_email}`, {
+          toast.success(`OTP sent to ${obj.case_email}`,style,{
             duration: 8000,
-            style: {
-              background: "white",
-              color: "black",
-              fontWeight: "17px",
-              padding: "20px",
-            },
           });
         },
         (error) => {
          setLoading(false);
           setShowOtpCard(false);
-          toast.error(`Failed to send OTP`, {
+          toast.error(`Failed to send OTP`,style,{
             duration: 8000,
-            style: {
-              background: "rgb(255,255,255,0)",
-              backdropFilter: "blur(15px)",
-              color: "white",
-              fontWeight: "17px",
-              padding: "20px",
-            },
           });
           console.log(error.text);
         }
@@ -237,7 +226,7 @@ export const ContactUs = () => {
     <>
       <Toaster position="top-center" />
       {showOtpCard ? (
-        <OtpCard otp={otp} obj={obj} />
+        <OtpCard otp={otp} obj={obj} style={style} />
       ) : (
         <div className="container-form">
           <form ref={form} onSubmit={sendEmail} className="form">
