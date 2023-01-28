@@ -34,7 +34,10 @@
 hr {
   border: 0.5px solid rgba(255, 255, 255, 0.298);
 }
-
+.heading-symptoms{
+  padding-right: 1rem;
+  display: inline;
+}
 .symptom {
   font-weight: 400;
 }
@@ -100,6 +103,22 @@ hr {
     margin: 0rem 1rem;
     /* padding: 2px; */
 }
+.label-filter{
+  float: right;
+}
+
+.filter{
+  color:white;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  margin: 0 1rem;
+  padding: 0.5rem;
+  appearance: none;
+  background-color: rgb(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
 
 @keyframes spinner {
     to {transform: rotate(360deg);}

@@ -37,7 +37,7 @@ let symptomsArr = [
   { key: "indigestion", name: "Indigestion" },
   { key: "headache", name: "Headace" },
   { key: "yellowish_skin", name: "Yellowish skin" },
-  { key: "dark_urine", name: "dark urine" },
+  { key: "dark_urine", name: "Dark urine" },
   { key: "nausea", name: "Nausea" },
   { key: "loss_of_appetite", name: "Loss of Appetite" },
   { key: "pain_behind_the_eyes", name: "Pain behind the eyes" },
@@ -46,7 +46,7 @@ let symptomsArr = [
   { key: "abdominal_pain", name: "Abdominal pain" },
   { key: "diarrhoea", name: "Diarrhoea" },
   { key: "mild_fever", name: "Mild fever" },
-  { key: "yellow_urine", name: "yellow urine" },
+  { key: "yellow_urine", name: "Yellow urine" },
   { key: "yellowing_of_eyes", name: "Yellowing of eyes" },
   { key: "acute_liver_failure", name: "Acute liver failure" },
   { key: "fluid_overload", name: "Fluid overload" },
@@ -75,7 +75,7 @@ let symptomsArr = [
   { key: "swollen_legs", name: "Swollen Legs" },
   { key: "swollen_blood_vessels", name: "Swollen blood vessels" },
   { key: "puffy_face_and_eyes", name: "Puffy face and eyes" },
-  { key: "enlarged_thyroid", name: "enlarged thyroid" },
+  { key: "enlarged_thyroid", name: "Enlarged thyroid" },
   { key: "brittle_nails", name: "Brittle nails" },
   { key: "swollen_extremeties", name: "Swollen extremeties" },
   { key: "excessive_hunger", name: "Excessive hunger" },
@@ -109,7 +109,7 @@ let symptomsArr = [
   { key: "belly_pain", name: "Belly pain" },
   { key: "abnormal_menstruation", name: "Abnormal menstruation" },
   { key: "dischromic_patches", name: "Dischromic patches" },
-  { key: "watering_from_eyes", name: "watering from eyes" },
+  { key: "watering_from_eyes", name: "Watering from eyes" },
   { key: "increased_appetite", name: "Increased appetite" },
   { key: "polyuria", name: "Polyuria" },
   { key: "family_history", name: "Family history" },
@@ -127,7 +127,7 @@ let symptomsArr = [
   { key: "distention_of_abdomen", name: "Distention of abdomen" },
   {
     key: "history_of_alcohol_consumption",
-    name: "history of alcohol consumption",
+    name: "History of alcohol consumption",
   },
   { key: "blood_in_sputum", name: "Blood in sputum" },
   { key: "prominent_veins_on_calf", name: "Prominent veins on calf" },
@@ -142,7 +142,7 @@ let symptomsArr = [
   { key: "inflammatory_nails", name: "Inflammatory nails" },
   { key: "blister", name: "Blisters" },
   { key: "red_sore_around_nose", name: "Red sore around nose" },
-  { key: "yellow_crust_ooze", name: "yellow crust ooze" },
+  { key: "yellow_crust_ooze", name: "Yellow crust ooze" },
 ];
 let obj = {};
 let style = {
@@ -154,12 +154,13 @@ let style = {
     fontWeight: "17px",
     padding: "20px",
   },
-}
+};
 
 export const ContactUs = () => {
   let [otp, setOtp] = useState(0);
   let [showOtpCard, setShowOtpCard] = useState(false);
-  let [loading,setLoading] = useState(false);
+  let [loading, setLoading] = useState(false);
+  let [arr, setArr] = useState(symptomsArr);
   const form = useRef();
 
   useEffect(() => {
@@ -180,6 +181,32 @@ export const ContactUs = () => {
     //     form.current,
     //     "dw0IdgTXXNcUc6QWE"
     //   )
+  //   fetch( "https://prediction-system-backend-services.onrender.com/sending-email",
+  //   {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       case_email: e.currentTarget.case_email.value,
+  //       otp: e.currentTarget.otp.value,
+  //       case_person: e.currentTarget.case_person.value,
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   }
+  // ).then(res=>{
+  //   console.log(res)
+  //   if(!res.ok){
+  //   throw new Error(res.status)
+  //   }
+  //   let formData = new FormData(form.current);
+  //   for (let [key, value] of formData.entries()) {
+  //     obj[key] = value;
+  //   }
+  //   return res.json();
+  // }).then((data)=>{
+  //   console.log(data)
+  // }).catch(err=>console.error(err.message));
+
     fetch(
       "https://prediction-system-backend-services.onrender.com/sending-email",
       {
@@ -196,30 +223,53 @@ export const ContactUs = () => {
     )
       .then(
         (result) => {
-       setLoading(false);
+          setLoading(false);
           setShowOtpCard(true);
-          // console.log(result.text);
+          console.log('this is result',result);
+          if(!result.ok){
+            throw new Error(result.status);
+          };
           let formData = new FormData(form.current);
           for (let [key, value] of formData.entries()) {
             obj[key] = value;
           }
-          toast.success(`OTP sent to ${obj.case_email}`,style,{
+          console.log(obj)
+          toast.success(`OTP sent to ${obj.case_email}`, style, {
             duration: 8000,
           });
-        },
-        (error) => {
-         setLoading(false);
-          setShowOtpCard(false);
-          toast.error(`Failed to send OTP`,style,{
-            duration: 8000,
-          });
-          console.log(error.text);
+          return result.json();
         }
-      )
-      .finally(() => {
+      ).then((data)=>{
+        console.log('this is data',data)
+      })
+      .catch((err)=>{
+          setLoading(false);
+          setShowOtpCard(false);
+          toast.error(`Failed to send OTP`, style, {
+            duration: 8000,
+          });
+          console.log('this is catch',err.message);
+      })
+      .finally((data) => {
         setLoading(false);
         toast.dismiss(notification);
       });
+  };
+
+  let filter = (value) => {
+    if (value === "acc") {
+      let acc = [...symptomsArr].sort((a, b) => (a.name > b.name ? 1 : -1));
+      console.log(acc);
+      setArr(acc);
+    } else if (value === "dcc") {
+      let dcc = [...symptomsArr].sort((a, b) => (a.name > b.name ? -1 : 1));
+      console.log(dcc);
+      setArr(dcc);
+    } else if (value === "org") {
+      let org = symptomsArr;
+      console.log(org);
+      setArr(org);
+    }
   };
 
   return (
@@ -232,7 +282,7 @@ export const ContactUs = () => {
           <form ref={form} onSubmit={sendEmail} className="form">
             <div className="input_container">
               <div className="wrap">
-                <label for="case_person" className="label_top">
+                <label className="label_top">
                   Name
                 </label>
                 <input
@@ -244,22 +294,34 @@ export const ContactUs = () => {
                 />
               </div>
               <div className="wrap">
-                <label for="case_email" className="label_top">
+                <label className="label_top">
                   Email
                 </label>
                 <input
                   type="email"
                   className="input_text"
                   name="case_email"
-                  placeholder="Your Email"
+                  placeholder="Enter   Email"
                   required
                 />
               </div>
             </div>
             <input type="hidden" name="otp" value={otp} />
             <h3 className="heading-symptoms">Select Symptoms</h3>
+            <label className="label-filter">
+              Filter
+              <select
+                name="filter"
+                className="filter"
+                onChange={(e) => filter(e.target.value)}
+              >
+                <option value="org">Original</option>
+                <option value="acc">A - Z</option>
+                <option value="dcc">Z - A</option>
+              </select>
+            </label>
             <div className="container_overflow">
-              {symptomsArr.map((el) => {
+              {arr.map((el) => {
                 return (
                   <>
                     <div className="conainter_symptoms">
@@ -267,7 +329,7 @@ export const ContactUs = () => {
                       <label name={el.name} className="radio_label">
                         Yes
                       </label>
-                      <input
+                      <input key={el.name}
                         className="symptoms_radio"
                         type="radio"
                         value={1}
@@ -277,7 +339,7 @@ export const ContactUs = () => {
                       <label name={el.name} className="radio_label">
                         No
                       </label>
-                      <input
+                      <input key={el.key}
                         className="symptoms_radio"
                         type="radio"
                         value={0}
@@ -292,9 +354,11 @@ export const ContactUs = () => {
             </div>
             <button className="button_submit" type="submit" disabled={loading}>
               Submit
-              {loading&&<span className="gap">
-                <span className="spinner"></span>
-              </span>}
+              {loading && (
+                <span className="gap">
+                  <span className="spinner"></span>
+                </span>
+              )}
             </button>
           </form>
         </div>
