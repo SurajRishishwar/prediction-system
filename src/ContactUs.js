@@ -301,7 +301,8 @@ export const ContactUs = () => {
                   type="email"
                   className="input_text"
                   name="case_email"
-                  placeholder="Enter   Email"
+                  placeholder="Enter 
+                  Email"
                   required
                 />
               </div>
