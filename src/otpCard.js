@@ -1,5 +1,5 @@
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import "./otpCard.css";
 let OtpCard = ({ otp, obj, style }) => {
   let [otpInput, setOtpInput] = useState("");
