@@ -150,6 +150,7 @@ let style = {
   style: {
     background: "rgb(255,255,255,0.05)",
     backdropFilter: "blur(15px)",
+    webkitBackdropFilter:'blur(15px)',
     color: "white",
     fontWeight: "17px",
     padding: "20px",
