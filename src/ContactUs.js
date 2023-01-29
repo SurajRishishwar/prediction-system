@@ -174,39 +174,6 @@ export const ContactUs = () => {
     e.preventDefault();
     setLoading(true);
     const notification = toast.loading("Sending OTP for verification", style);
-    // emailjs
-    //   .sendForm(
-    //     "service_5ijhdv4",
-    //     "template_f5jb4wq",
-    //     form.current,
-    //     "dw0IdgTXXNcUc6QWE"
-    //   )
-  //   fetch( "https://prediction-system-backend-services.onrender.com/sending-email",
-  //   {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       case_email: e.currentTarget.case_email.value,
-  //       otp: e.currentTarget.otp.value,
-  //       case_person: e.currentTarget.case_person.value,
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   }
-  // ).then(res=>{
-  //   console.log(res)
-  //   if(!res.ok){
-  //   throw new Error(res.status)
-  //   }
-  //   let formData = new FormData(form.current);
-  //   for (let [key, value] of formData.entries()) {
-  //     obj[key] = value;
-  //   }
-  //   return res.json();
-  // }).then((data)=>{
-  //   console.log(data)
-  // }).catch(err=>console.error(err.message));
-
     fetch(
       "https://prediction-system-backend-services.onrender.com/sending-email",
       {
@@ -223,9 +190,7 @@ export const ContactUs = () => {
     )
       .then(
         (result) => {
-          setLoading(false);
           setShowOtpCard(true);
-          console.log('this is result',result);
           if(!result.ok){
             throw new Error(result.status);
           };
@@ -233,22 +198,19 @@ export const ContactUs = () => {
           for (let [key, value] of formData.entries()) {
             obj[key] = value;
           }
-          console.log(obj)
           toast.success(`OTP sent to ${obj.case_email}`, style, {
             duration: 8000,
           });
           return result.json();
         }
       ).then((data)=>{
-        console.log('this is data',data)
+        // console.log('this is data',data)
       })
       .catch((err)=>{
-          setLoading(false);
           setShowOtpCard(false);
           toast.error(`Failed to send OTP`, style, {
             duration: 8000,
           });
-          console.log('this is catch',err.message);
       })
       .finally((data) => {
         setLoading(false);
@@ -259,15 +221,12 @@ export const ContactUs = () => {
   let filter = (value) => {
     if (value === "acc") {
       let acc = [...symptomsArr].sort((a, b) => (a.name > b.name ? 1 : -1));
-      console.log(acc);
       setArr(acc);
     } else if (value === "dcc") {
       let dcc = [...symptomsArr].sort((a, b) => (a.name > b.name ? -1 : 1));
-      console.log(dcc);
       setArr(dcc);
     } else if (value === "org") {
       let org = symptomsArr;
-      console.log(org);
       setArr(org);
     }
   };

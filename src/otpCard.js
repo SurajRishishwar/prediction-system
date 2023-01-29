@@ -46,7 +46,6 @@ let OtpCard = ({ otp, obj, style }) => {
 
   return (
     <>
-      {/* <Toaster position="top-right"/> */}
       {hideOtp ? (
         <>
           <div className="screen">
